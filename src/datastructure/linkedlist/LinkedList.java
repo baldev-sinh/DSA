@@ -105,6 +105,24 @@ public class LinkedList {
     return false;
   }
 
+  public boolean insert(int index, int value){
+    if(index < 0 || index > length) return false;
+    if(index == 0){
+      prepend(value);
+      return true;
+    }
+    if(index == length){
+      append(value);
+      return true;
+    }
+    Node prev = get(index - 1);
+    Node newNode = new Node(value);
+    newNode.next = prev.next;
+    prev.next = newNode;
+    length++;
+    return true;
+  }
+
   public void printList(){
     Node temp = head;
     while (temp != null){
