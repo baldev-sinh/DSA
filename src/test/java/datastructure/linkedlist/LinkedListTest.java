@@ -151,4 +151,74 @@ class LinkedListTest {
     assertEquals(4, list.size());
   }
 
+  @Test
+  void shouldRemoveFirstNode() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node removedNode = list.removeFirst();
+
+    assertNotNull(removedNode);
+    assertEquals(10, removedNode.value);
+
+    assertEquals(2, list.size());
+    assertEquals(20, list.getHead().value);
+    assertEquals(30, list.getTail().value);
+
+    assertEquals(20, list.get(0).value);
+    assertEquals(30, list.get(1).value);
+  }
+
+  @Test
+  void shouldRemoveFirstNodeFromSingleNodeList() {
+    LinkedList list = new LinkedList(10);
+
+    LinkedList.Node removedNode = list.removeFirst();
+
+    assertNotNull(removedNode);
+    assertEquals(10, removedNode.value);
+
+    assertEquals(0, list.size());
+    assertNull(list.getHead());
+    assertNull(list.getTail());
+  }
+
+  @Test
+  void shouldUpdateHeadAfterRemoveFirst() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    list.removeFirst();
+
+    assertEquals(20, list.getHead().value);
+    assertEquals(30, list.getTail().value);
+    assertEquals(30, list.getHead().next.value);
+  }
+
+  @Test
+  void shouldDecreaseSizeAfterEachRemoveFirst() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+    list.append(40);
+
+    assertEquals(4, list.size());
+
+    list.removeFirst();
+    assertEquals(3, list.size());
+
+    list.removeFirst();
+    assertEquals(2, list.size());
+
+    list.removeFirst();
+    assertEquals(1, list.size());
+
+    list.removeFirst();
+    assertEquals(0, list.size());
+    assertNull(list.getHead());
+    assertNull(list.getTail());
+  }
+
 }
