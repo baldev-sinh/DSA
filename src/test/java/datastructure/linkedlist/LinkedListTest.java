@@ -97,4 +97,58 @@ class LinkedListTest {
     assertNull(list.getTail());
   }
 
+  @Test
+  void shouldPrependNodeToBeginning() {
+    LinkedList list = new LinkedList(20);
+
+    list.prepend(10);
+
+    assertEquals(2, list.size());
+    assertEquals(10, list.getHead().value);
+    assertEquals(20, list.getTail().value);
+    assertEquals(20, list.getHead().next.value);
+  }
+
+  @Test
+  void shouldPrependMultipleNodes() {
+    LinkedList list = new LinkedList(30);
+
+    list.prepend(20);
+    list.prepend(10);
+
+    assertEquals(3, list.size());
+    assertEquals(10, list.getHead().value);
+    assertEquals(30, list.getTail().value);
+
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+    assertEquals(30, list.get(2).value);
+  }
+
+  @Test
+  void shouldUpdateHeadAfterPrepend() {
+    LinkedList list = new LinkedList(20);
+
+    list.prepend(10);
+
+    assertEquals(10, list.getHead().value);
+    assertEquals(20, list.getHead().next.value);
+  }
+
+  @Test
+  void shouldIncreaseSizeAfterEachPrepend() {
+    LinkedList list = new LinkedList(30);
+
+    assertEquals(1, list.size());
+
+    list.prepend(20);
+    assertEquals(2, list.size());
+
+    list.prepend(10);
+    assertEquals(3, list.size());
+
+    list.prepend(5);
+    assertEquals(4, list.size());
+  }
+
 }
