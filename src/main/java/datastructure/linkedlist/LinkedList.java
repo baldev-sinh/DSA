@@ -143,16 +143,16 @@ public class LinkedList {
     }
   }
 
-  public void getHead(){
-    System.out.println("Head: " + head.value);
+  public Node getHead() {
+    return head;
   }
 
-  public void getTail(){
-    System.out.println("Tail: " + tail.value);
+  public Node getTail() {
+    return tail;
   }
 
-  public void getLength(){
-    System.out.println("LinkedList length: " + length);
+  public int size() {
+    return length;
   }
 
 }
