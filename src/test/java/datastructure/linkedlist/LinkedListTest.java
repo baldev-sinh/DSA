@@ -362,4 +362,92 @@ class LinkedListTest {
     assertEquals(20, list.get(1).value);
   }
 
+  @Test
+  void shouldRemoveFirstNodeUsingIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node removedNode = list.remove(0);
+
+    assertNotNull(removedNode);
+    assertEquals(10, removedNode.value);
+
+    assertEquals(2, list.size());
+    assertEquals(20, list.getHead().value);
+    assertEquals(30, list.getTail().value);
+    assertEquals(20, list.get(0).value);
+    assertEquals(30, list.get(1).value);
+  }
+
+  @Test
+  void shouldRemoveMiddleNodeUsingIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+    list.append(40);
+
+    LinkedList.Node removedNode = list.remove(2);
+
+    assertNotNull(removedNode);
+    assertEquals(30, removedNode.value);
+
+    assertEquals(3, list.size());
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+    assertEquals(40, list.get(2).value);
+    assertEquals(40, list.getTail().value);
+  }
+
+  @Test
+  void shouldRemoveLastNodeUsingIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node removedNode = list.remove(2);
+
+    assertNotNull(removedNode);
+    assertEquals(30, removedNode.value);
+
+    assertEquals(2, list.size());
+    assertEquals(20, list.getTail().value);
+    assertNull(list.getTail().next);
+  }
+
+  @Test
+  void shouldReturnNullWhenRemovingWithNegativeIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    LinkedList.Node removedNode = list.remove(-1);
+
+    assertNull(removedNode);
+    assertEquals(2, list.size());
+  }
+
+  @Test
+  void shouldReturnNullWhenRemovingAtIndexEqualToSize() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    LinkedList.Node removedNode = list.remove(list.size());
+
+    assertNull(removedNode);
+    assertEquals(2, list.size());
+  }
+
+  @Test
+  void shouldReturnNullWhenRemovingAtIndexGreaterThanSize() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    LinkedList.Node removedNode = list.remove(10);
+
+    assertNull(removedNode);
+    assertEquals(2, list.size());
+  }
+
+
+
 }
