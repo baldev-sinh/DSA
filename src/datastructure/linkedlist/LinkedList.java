@@ -123,6 +123,18 @@ public class LinkedList {
     return true;
   }
 
+  public Node remove(int index){
+    if(index < 0 || index >= length) return null;
+    if(index == 0) return removeFirst();
+    if(index == length - 1) return removeLast();
+    Node prev = get(index - 1);
+    Node current = prev.next;
+    prev.next = current.next;
+    current.next = null;
+    length--;
+    return current;
+  }
+
   public void printList(){
     Node temp = head;
     while (temp != null){
