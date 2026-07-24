@@ -221,4 +221,73 @@ class LinkedListTest {
     assertNull(list.getTail());
   }
 
+  @Test
+  void shouldReturnNodeAtGivenIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+    list.append(40);
+
+    LinkedList.Node node = list.get(2);
+
+    assertNotNull(node);
+    assertEquals(30, node.value);
+  }
+
+  @Test
+  void shouldReturnHeadNodeWhenIndexIsZero() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node node = list.get(0);
+
+    assertNotNull(node);
+    assertEquals(10, node.value);
+  }
+
+  @Test
+  void shouldReturnTailNodeWhenIndexIsLast() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node node = list.get(2);
+
+    assertNotNull(node);
+    assertEquals(30, node.value);
+  }
+
+  @Test
+  void shouldReturnNullForNegativeIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    LinkedList.Node node = list.get(-1);
+
+    assertNull(node);
+  }
+
+  @Test
+  void shouldReturnNullWhenIndexEqualsSize() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node node = list.get(list.size());
+
+    assertNull(node);
+  }
+
+  @Test
+  void shouldReturnNullWhenIndexGreaterThanSize() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node node = list.get(10);
+
+    assertNull(node);
+  }
+
 }
