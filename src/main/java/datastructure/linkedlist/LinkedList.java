@@ -123,6 +123,18 @@ public class LinkedList {
     return true;
   }
 
+  public Node remove(int index){
+    if(index < 0 || index >= length) return null;
+    if(index == 0) return removeFirst();
+    if(index == length - 1) return removeLast();
+    Node previous = get(index - 1);
+    Node current = previous.next;
+    previous.next = current.next;
+    current.next = null;
+    length--;
+    return current;
+  }
+
   public void printList(){
     Node temp = head;
     while (temp != null){
@@ -131,16 +143,16 @@ public class LinkedList {
     }
   }
 
-  public void getHead(){
-    System.out.println("Head: " + head.value);
+  public Node getHead() {
+    return head;
   }
 
-  public void getTail(){
-    System.out.println("Tail: " + tail.value);
+  public Node getTail() {
+    return tail;
   }
 
-  public void getLength(){
-    System.out.println("LinkedList length: " + length);
+  public int size() {
+    return length;
   }
 
 }
