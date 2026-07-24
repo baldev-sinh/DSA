@@ -1,6 +1,7 @@
 package datastructure.linkedlist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
@@ -61,6 +62,39 @@ class LinkedListTest {
 
     list.append(40);
     assertEquals(4, list.size());
+  }
+
+  @Test
+  void shouldRemoveLastNode() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+    list.append(30);
+
+    LinkedList.Node removedNode = list.removeLast();
+
+    assertNotNull(removedNode);
+    assertEquals(30, removedNode.value);
+
+    assertEquals(2, list.size());
+    assertEquals(20, list.getTail().value);
+    assertNull(list.getTail().next);
+
+    assertEquals(10, list.getHead().value);
+    assertEquals(20, list.get(1).value);
+  }
+
+  @Test
+  void shouldRemoveLastNodeFromSingleNodeList() {
+    LinkedList list = new LinkedList(10);
+
+    LinkedList.Node removedNode = list.removeLast();
+
+    assertNotNull(removedNode);
+    assertEquals(10, removedNode.value);
+
+    assertEquals(0, list.size());
+    assertNull(list.getHead());
+    assertNull(list.getTail());
   }
 
 }
