@@ -1,8 +1,10 @@
 package datastructure.linkedlist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -288,6 +290,76 @@ class LinkedListTest {
     LinkedList.Node node = list.get(10);
 
     assertNull(node);
+  }
+
+  @Test
+  void shouldInsertNodeAtBeginning() {
+    LinkedList list = new LinkedList(20);
+    list.append(30);
+
+    boolean inserted = list.insert(0, 10);
+
+    assertTrue(inserted);
+    assertEquals(3, list.size());
+    assertEquals(10, list.getHead().value);
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+    assertEquals(30, list.get(2).value);
+  }
+
+  @Test
+  void shouldInsertNodeInMiddle() {
+    LinkedList list = new LinkedList(10);
+    list.append(30);
+
+    boolean inserted = list.insert(1, 20);
+
+    assertTrue(inserted);
+    assertEquals(3, list.size());
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+    assertEquals(30, list.get(2).value);
+  }
+
+  @Test
+  void shouldInsertNodeAtEnd() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    boolean inserted = list.insert(2, 30);
+
+    assertTrue(inserted);
+    assertEquals(3, list.size());
+    assertEquals(30, list.getTail().value);
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+    assertEquals(30, list.get(2).value);
+  }
+
+  @Test
+  void shouldReturnFalseForNegativeIndex() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    boolean inserted = list.insert(-1, 5);
+
+    assertFalse(inserted);
+    assertEquals(2, list.size());
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
+  }
+
+  @Test
+  void shouldReturnFalseWhenIndexGreaterThanSize() {
+    LinkedList list = new LinkedList(10);
+    list.append(20);
+
+    boolean inserted = list.insert(3, 30);
+
+    assertFalse(inserted);
+    assertEquals(2, list.size());
+    assertEquals(10, list.get(0).value);
+    assertEquals(20, list.get(1).value);
   }
 
 }
