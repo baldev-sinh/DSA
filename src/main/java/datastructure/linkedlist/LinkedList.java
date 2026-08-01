@@ -153,6 +153,25 @@ public class LinkedList {
     }
   }
 
+  public static boolean areEqual(Node head1, Node head2) {
+
+    if (head1 == head2) {
+      return true;
+    }
+
+    while (head1 != null && head2 != null) {
+      if (head1.value != head2.value) {
+        return false;
+      }
+
+      head1 = head1.next;
+      head2 = head2.next;
+    }
+
+    return head1 == null && head2 == null;
+  }
+
+
 
   public void printList(){
     Node temp = head;
