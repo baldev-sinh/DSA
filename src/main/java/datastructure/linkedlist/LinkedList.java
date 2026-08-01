@@ -1,5 +1,7 @@
 package datastructure.linkedlist;
 
+import java.util.Objects;
+
 public class LinkedList {
   private Node head;
   private Node tail;
@@ -135,6 +137,23 @@ public class LinkedList {
     return current;
   }
 
+  public void reverse(){
+    Node temp = head;
+    head = tail;
+    tail = temp;
+
+    Node before = null;
+    Node after = temp.next;
+
+    for (int i = 0; i < length; i++) {
+      after = temp.next;
+      temp.next = before;
+      before = temp;
+      temp = after;
+    }
+  }
+
+
   public void printList(){
     Node temp = head;
     while (temp != null){
@@ -142,6 +161,8 @@ public class LinkedList {
       temp = temp.next;
     }
   }
+
+
 
   public Node getHead() {
     return head;
