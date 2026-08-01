@@ -491,6 +491,72 @@ class LinkedListTest {
     assertEquals(1, list.get(1).value);
   }
 
+  @Test
+  void shouldReturnTrueWhenListsAreEqual(){
+    LinkedList list = new LinkedList(1);
+    list.append(2);
+    list.append(3);
+    list.append(4);
+
+    LinkedList reversed = new LinkedList(4);
+    reversed.append(3);
+    reversed.append(2);
+    reversed.append(1);
+
+    list.reverse();
+
+    boolean equals = LinkedList.areEqual(list.getHead(), reversed.getHead());
+
+    assertTrue(equals);
+
+  }
+
+  @Test
+  void shouldReturnFalseWhenListsHaveDifferentValues() {
+    LinkedList list1 = new LinkedList(1);
+    list1.append(2);
+    list1.append(3);
+
+    LinkedList list2 = new LinkedList(1);
+    list2.append(2);
+    list2.append(4);
+
+    assertFalse(LinkedList.areEqual(list1.getHead(), list2.getHead()));
+  }
+
+  @Test
+  void shouldReturnFalseWhenFirstListIsLonger() {
+    LinkedList list1 = new LinkedList(1);
+    list1.append(2);
+    list1.append(3);
+
+    LinkedList list2 = new LinkedList(1);
+    list2.append(2);
+
+    assertFalse(LinkedList.areEqual(list1.getHead(), list2.getHead()));
+  }
+
+  @Test
+  void shouldReturnFalseWhenSecondListIsLonger() {
+    LinkedList list1 = new LinkedList(1);
+    list1.append(2);
+
+    LinkedList list2 = new LinkedList(1);
+    list2.append(2);
+    list2.append(3);
+
+    assertFalse(LinkedList.areEqual(list1.getHead(), list2.getHead()));
+  }
+
+  @Test
+  void shouldReturnTrueWhenComparingSameList() {
+    LinkedList list = new LinkedList(1);
+    list.append(2);
+    list.append(3);
+
+    assertTrue(LinkedList.areEqual(list.getHead(), list.getHead()));
+  }
+
 
 
 
