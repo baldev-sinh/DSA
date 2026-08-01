@@ -448,6 +448,50 @@ class LinkedListTest {
     assertEquals(2, list.size());
   }
 
+  @Test
+  void shouldReverseLinkedList() {
+    LinkedList list = new LinkedList(1);
+    list.append(2);
+    list.append(3);
+    list.append(4);
+
+    list.reverse();
+
+    assertEquals(4, list.getHead().value);
+    assertEquals(1, list.getTail().value);
+    assertEquals(4, list.get(0).value);
+    assertEquals(3, list.get(1).value);
+    assertEquals(2, list.get(2).value);
+    assertEquals(1, list.get(3).value);
+    assertNull(list.getTail().next);
+    assertEquals(4, list.size());
+  }
+
+  @Test
+  void shouldReverseSingleNodeLinkedList() {
+    LinkedList list = new LinkedList(1);
+
+    list.reverse();
+
+    assertEquals(1, list.getHead().value);
+    assertEquals(1, list.getTail().value);
+    assertEquals(1, list.size());
+  }
+
+  @Test
+  void shouldReverseTwoNodeLinkedList() {
+    LinkedList list = new LinkedList(1);
+    list.append(2);
+
+    list.reverse();
+
+    assertEquals(2, list.getHead().value);
+    assertEquals(1, list.getTail().value);
+    assertEquals(2, list.get(0).value);
+    assertEquals(1, list.get(1).value);
+  }
+
+
 
 
 }
